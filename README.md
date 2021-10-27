@@ -3,23 +3,24 @@
 ![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)\
 ![MCU](https://img.shields.io/badge/MCU-STM32-blue)
 ![MCU Family](https://img.shields.io/badge/Family-L0-yellow)
+![IDE](https://img.shields.io/badge/STM32CubeIDE-blue)
 ![firmware-size](https://img.shields.io/badge/Firmware%20Size-3.55%20kB-red)
 ![ram-usage](https://img.shields.io/badge/RAM%20Usage-1.15%20kB-red)
 
 This project demonstrates RF wireless communication with the use
 of STM32L011K4 as MCU and CC1101 as RF IC. User can send a message
 with the press of a button and receive a message anytime. The 
-communication is half-duplex (cannot receive only while send). For
+communication is half-duplex (cannot receive only when send). For
 development i have used STM32CubeIDE with bare metal code.
 
 ## <span style="color:red">RF Characteristics</span>
-Modulation:			GFSK\
-Frequency:			868 MHz\
-Channel Bandwidth:	100 kHz\
-Channel Spacing:	200 kHz\
-Selected Channel:	0\
-Deviation:			19 kHz\
-Data Rate:			1 kBaud\
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Modulation:			GFSK'
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Frequency:			868 MHz'
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Channel Bandwidth:	100 kHz'
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Channel Spacing:	200 kHz'
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Selected Channel:	0'
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Deviation:			19 kHz'
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Data Rate:			1 kBaud'
 
 ## Message Structure
 Message Address is specified to rfSettings array. You can change it if 
