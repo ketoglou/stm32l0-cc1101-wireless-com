@@ -16,12 +16,12 @@ development i have used STM32CubeIDE with bare metal code.
 
 ## <span style="color:red">RF Characteristics</span>
 ```diff
-+ Modulation:			GFSK
++ Modulation:			GFSK   
 ! Frequency:			868 MHz
 - Channel Bandwidth:		100 kHz
 - Channel Spacing:		200 kHz
-- Selected Channel:		0
-- Deviation:			19 kHz
+- Selected Channel:		0      
+- Deviation:			19 kHz 
 - Data Rate:			1 kBaud
 ```
 
