@@ -14,13 +14,15 @@ communication is half-duplex (cannot receive only when send). For
 development i have used STM32CubeIDE with bare metal code.
 
 ## <span style="color:red">RF Characteristics</span>
-- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Modulation:			GFSK'
-- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Frequency:			868 MHz'
-- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Channel Bandwidth:	100 kHz'
-- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Channel Spacing:	200 kHz'
-- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Selected Channel:	0'
-- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Deviation:			19 kHz'
-- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Data Rate:			1 kBaud'
+```diff
++ Modulation:			GFSK\
+! Frequency:			868 MHz\
+- Channel Bandwidth:	100 kHz\
+- Channel Spacing:	200 kHz\
+- Selected Channel:	0\
+- Deviation:			19 kHz\
+- Data Rate:			1 kBaud
+```
 
 ## Message Structure
 Message Address is specified to rfSettings array. You can change it if 
