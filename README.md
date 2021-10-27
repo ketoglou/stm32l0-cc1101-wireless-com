@@ -1,8 +1,8 @@
 # Radio Frequency Wireless Communication
 
+![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)\
 ![MCU](https://img.shields.io/badge/MCU-STM32-blue)
 ![MCU Family](https://img.shields.io/badge/Family-L0-yellow)
-![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
 ![firmware-size](https://img.shields.io/badge/Firmware%20Size-3.55%20kB-red)
 ![ram-usage](https://img.shields.io/badge/RAM%20Usage-1.15%20kB-red)
 
@@ -12,14 +12,14 @@ with the press of a button and receive a message anytime. The
 communication is half-duplex (cannot receive only while send). For
 development i have used STM32CubeIDE with bare metal code.
 
-## RF Characteristics
-Modulation:			GFSK
-Frequency:			868 MHz
-Channel Bandwidth:	100 kHz
-Channel Spacing:	200 kHz
-Selected Channel:	0
-Deviation:			19 kHz
-Data Rate:			1 kBaud
+## <span style="color:red">RF Characteristics</span>
+Modulation:			GFSK\
+Frequency:			868 MHz\
+Channel Bandwidth:	100 kHz\
+Channel Spacing:	200 kHz\
+Selected Channel:	0\
+Deviation:			19 kHz\
+Data Rate:			1 kBaud\
 
 ## Message Structure
 Message Address is specified to rfSettings array. You can change it if 
