@@ -18,14 +18,14 @@
 #include "timers.h"
 
 //Defines
-#define TOTAL_MSG_BYTES		8															//Total number of message bytes
-#define MSG_BYTES			7															//Number of clear message bytes
+#define TOTAL_MSG_BYTES		8	//Total number of message bytes
+#define MSG_BYTES			7	//Number of clear message bytes
 
 //Variables
-uint8_t msg[TOTAL_MSG_BYTES] = { MSG_BYTES, 'H', 'e', 'l', 'l', 'o', ' ', '1' };//Message
+uint8_t msg[TOTAL_MSG_BYTES] = { MSG_BYTES, 'H', 'e', 'l', 'l', 'o', ' ', '1' };	//Message
 
 //**************************************************************************************************************************************************************
-int main(void) {
+int main(void){
 
 	init_emb_flash_mem();			//Initialize latency WS
 	init_rcc();						//Initialize clock (RCC)
@@ -41,15 +41,13 @@ int main(void) {
 	USER_BUFFER[0] = SRX;
 	spi_transmit_wait(USER_BUFFER, 1, CC1101_NSS);
 
-	while (1) {
+	while(1){
 
 		//Monitor if we receive something
-		if (FLAG_READ(FLAG1)) {
+		if(FLAG_READ(FLAG1)){
 			//Receive data from CC1101 (USER_BUFFER[0] is garbage data because we send a command first)
 			//Data start from SPI_RX_BUFFER[1] and there are MSG_BYTES_NUM bytes in number.
-			spi_transmit_wait(USER_BUFFER,
-					init_receive_packet(USER_BUFFER, TOTAL_MSG_BYTES),
-					CC1101_NSS);
+			spi_transmit_wait(USER_BUFFER,init_receive_packet(USER_BUFFER, TOTAL_MSG_BYTES), CC1101_NSS);
 			//Change LED status
 			GPIOB->ODR ^= GPIO_ODR_OD3;
 
@@ -63,7 +61,7 @@ int main(void) {
 		}
 
 		//Monitor if the button is pressed
-		if (FLAG_READ(FLAG3)) {
+		if(FLAG_READ(FLAG3)){
 
 			//Send the message
 			cc1101_transmit(msg, TOTAL_MSG_BYTES);
