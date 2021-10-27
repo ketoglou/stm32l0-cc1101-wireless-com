@@ -17,7 +17,7 @@ development i have used STM32CubeIDE with bare metal code.
 ```diff
 + Modulation:			GFSK
 ! Frequency:			868 MHz
-- Channel Bandwidth:	100 kHz
+- Channel Bandwidth:		100 kHz
 - Channel Spacing:		200 kHz
 - Selected Channel:		0
 - Deviation:			19 kHz
