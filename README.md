@@ -17,7 +17,7 @@ development i have used STM32CubeIDE with bare metal code.
 ## <span style="color:red">RF Characteristics</span>
 ```diff
 + Modulation:			GFSK   
-! Frequency:			868 MHz
++ Frequency:			868 MHz
 - Channel Bandwidth:		100 kHz
 - Channel Spacing:		200 kHz
 - Selected Channel:		0      
