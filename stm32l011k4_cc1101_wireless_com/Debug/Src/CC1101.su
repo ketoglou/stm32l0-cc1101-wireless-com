@@ -1,0 +1,4 @@
+CC1101.c:81:6:init_cc1101	16	static
+CC1101.c:97:6:cc1101_transmit	16	static
+CC1101.c:131:10:init_receive_packet	24	static
+CC1101.c:143:6:cc1101_handler	8	static

@@ -1,0 +1,7 @@
+core_cm0plus.h:741:22:__NVIC_EnableIRQ	16	static,ignoring_inline_asm
+spi.c:14:6:init_spi	8	static
+spi.c:44:6:nss_pin_handler	16	static
+spi.c:56:9:spi_transmit	24	static
+spi.c:87:6:spi_transmit_wait	16	static
+spi.c:95:6:spi_transmit_wait_byte	24	static
+spi.c:104:6:spi_clear_rx_buffer	16	static
