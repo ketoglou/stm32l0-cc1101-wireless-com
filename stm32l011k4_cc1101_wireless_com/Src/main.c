@@ -6,7 +6,7 @@
  * Author	: 	Theocharis Ketoglou
  * Date		:	20/09/2021
  */
-
+AA
 //Includes
 #include "CMSIS/stm32l0xx.h"
 #include "cc1101.h"
