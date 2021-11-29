@@ -73,19 +73,19 @@ void EXTI4_15_IRQHandler(void){
 	//Interrupt on line 8
 	if(EXTI->PR & EXTI_PR_PIF8){
 
-		if(!FLAG_READ(FLAG0)){
+		if(!flag0.f0){
 			//Disable interrupt on rising edge from line 8
 			EXTI->RTSR &= ~EXTI_RTSR_RT8;
 			//Enable interrupt on falling edge from line 8
 			EXTI->FTSR |= EXTI_FTSR_FT8;
-			FLAG_SET(FLAG0);
+			flag0.f0 = 1;
 		}else{
 			//Enable interrupt on rising edge from line 8
 			EXTI->RTSR |= EXTI_RTSR_RT8;
 			//Disable interrupt on falling edge from line 8
 			EXTI->FTSR &= ~EXTI_FTSR_FT8;
-			FLAG_CLEAR(FLAG0);
-			FLAG_SET(FLAG1);
+			flag0.f0 = 1;
+			flag0.f1 = 1;
 		}
 
 		//Clear flag
@@ -101,15 +101,15 @@ void TIM2_IRQHandler(void){
 	//-----------------------------------------------------
 	if(GPIOA->IDR & 0x01){
 		button0_counter = 0;
-		FLAG_CLEAR(FLAG2);
+		flag0.f2 = 0;
 	}else{
-		if(!FLAG_READ(FLAG2))
+		if(!flag0.f2)
 			button0_counter ++;
 	}
 
-	if(button0_counter == 10 && !FLAG_READ(FLAG2)){
-		FLAG_SET(FLAG3);
-		FLAG_SET(FLAG2);
+	if(button0_counter == 10 && !flag0.f2){
+		flag0.f3 = 1;
+		flag0.f2 = 1;
 	}
 	//-----------------------------------------------------
 

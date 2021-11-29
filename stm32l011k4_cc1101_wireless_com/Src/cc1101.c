@@ -98,7 +98,7 @@ void init_cc1101(void){
 void cc1101_transmit(uint8_t *buffer, uint8_t size){
 
 	//Clear Flag
-	FLAG_CLEAR(FLAG1);
+	flag0.f1 = 0;
 
 	//Go to IDLE state and wait CC1101 to go to IDLE state
 	USER_BUFFER[0] = SIDLE;
@@ -121,14 +121,14 @@ void cc1101_transmit(uint8_t *buffer, uint8_t size){
 	spi_transmit_wait(USER_BUFFER,1,CC1101_NSS);
 
 	//Wait for transmission to complete
-	while(!FLAG_READ(FLAG1));
+	while(!flag0.f1);
 
 	//Flush/Clear TX FIFO
 	USER_BUFFER[0] = SFTX;
 	spi_transmit_wait(USER_BUFFER,1,CC1101_NSS);
 
 	//Clear flag
-	FLAG_CLEAR(FLAG1);
+	flag0.f1 = 0;
 }
 
 //**************************************************************************************************************************************************************

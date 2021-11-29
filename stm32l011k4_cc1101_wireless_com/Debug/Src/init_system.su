@@ -1,0 +1,3 @@
+init_system.c:14:6:init_emb_flash_mem	8	static
+init_system.c:27:6:init_rcc	8	static
+init_system.c:60:6:init_iwdg	8	static

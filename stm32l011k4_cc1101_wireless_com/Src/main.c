@@ -34,7 +34,6 @@ int main(void){
 	init_cc1101();					//Initialize CC1101
 	init_timer2();					//Initialize Timer 2 to sample button
 	init_external_irq();			//Initialize interrupts from external source
-	FLAG_CLEAR_ALL();				//Clear flags
 	init_iwdg();					//Initialize WatchDog (Comment in DEBUG mode)
 
 	//CC1101 Receive Mode Enable
@@ -44,7 +43,7 @@ int main(void){
 	while(1){
 
 		//Monitor if we receive something
-		if(FLAG_READ(FLAG1)){
+		if(flag0.f1){
 			//Receive data from CC1101 (USER_BUFFER[0] is garbage data because we send a command first)
 			//Data start from SPI_RX_BUFFER[1] and there are MSG_BYTES_NUM bytes in number.
 			spi_transmit_wait(USER_BUFFER,init_receive_packet(USER_BUFFER, TOTAL_MSG_BYTES), CC1101_NSS);
@@ -52,7 +51,7 @@ int main(void){
 			GPIOB->ODR ^= GPIO_ODR_OD3;
 
 			//Clear Flag
-			FLAG_CLEAR(FLAG1);
+			flag0.f1 = 0;
 
 			//Enable Receive mode again
 			USER_BUFFER[0] = SFRX; //Clear RX buffer
@@ -61,13 +60,13 @@ int main(void){
 		}
 
 		//Monitor if the button is pressed
-		if(FLAG_READ(FLAG3)){
+		if(flag0.f3){
 
 			//Send the message
 			cc1101_transmit(msg, TOTAL_MSG_BYTES);
 
 			//Clear Flag
-			FLAG_CLEAR(FLAG3);
+			flag0.f3 = 0;
 
 			//Enable Receive mode again
 			USER_BUFFER[0] = SFRX; //Clear RX buffer

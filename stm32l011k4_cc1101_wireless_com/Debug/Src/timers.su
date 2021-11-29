@@ -1,0 +1,2 @@
+core_cm0plus.h:741:22:__NVIC_EnableIRQ	16	static,ignoring_inline_asm
+timers.c:13:6:init_timer2	8	static
