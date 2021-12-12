@@ -1,11 +1,11 @@
 /*
  * ****************************************************
- * File:	  main.c
- * Project:   RF communication with stm32 and cc1101
- * MCU: 	  STM32L011K4
- * Others:    CC1101
+ * File:	main.c
+ * Project:	RF communication with stm32 and cc1101
+ * MCU:		STM32L011K4
+ * Others:	CC1101
  * Author:	Theocharis Ketoglou
- * Date:	  20/09/2021
+ * Date:	20/09/2021
  * ****************************************************
  */
 
@@ -20,7 +20,7 @@
 #include "timers.h"
 
 //Defines
-#define TOTAL_MSG_BYTES	  8	//Total number of message bytes
+#define TOTAL_MSG_BYTES		8	//Total number of message bytes
 #define MSG_BYTES			7	//Number of clear message bytes
 
 //Variables
@@ -29,14 +29,14 @@ uint8_t msg[TOTAL_MSG_BYTES] = { MSG_BYTES, 'H', 'e', 'l', 'l', 'o', ' ', '1' };
 //**************************************************************************************************************************************************************
 int main(void){
 
-	init_emb_flash_mem();		   //Initialize latency WS
-	init_rcc();					 //Initialize clock (RCC)
-	init_gpio();					//Initialize GPIOs
-	init_spi();					 //Initialize SPI
-	init_cc1101();				  //Initialize CC1101
-	init_timer2();				  //Initialize Timer 2 to sample button
-	init_external_irq();			//Initialize interrupts from external source
-	init_iwdg();					//Initialize WatchDog (Comment in DEBUG mode)
+	init_emb_flash_mem();	//Initialize latency WS
+	init_rcc();				//Initialize clock (RCC)
+	init_gpio();			//Initialize GPIOs
+	init_spi();				//Initialize SPI
+	init_cc1101();			//Initialize CC1101
+	init_timer2();			//Initialize Timer 2 to sample button
+	init_external_irq();	//Initialize interrupts from external source
+	init_iwdg();			//Initialize WatchDog (Comment in DEBUG mode)
 
 	//CC1101 Receive Mode Enable
 	USER_BUFFER[0] = SRX;

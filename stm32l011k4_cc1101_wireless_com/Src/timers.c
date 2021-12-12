@@ -1,11 +1,11 @@
 /*
  * ****************************************************
- * File:	  timers.c
- * Project:   RF communication with stm32 and cc1101
- * MCU: 	  STM32L011K4
- * Others:    CC1101
- * Author:	Theocharis Ketoglou
- * Date:	  20/09/2021
+ * File:    timers.c
+ * Project: RF communication with stm32 and cc1101
+ * MCU:     STM32L011K4
+ * Others:  CC1101
+ * Author:  Theocharis Ketoglou
+ * Date:    20/09/2021
  * ****************************************************
  */
 
@@ -21,11 +21,6 @@ void init_timer2(void){
     SET_BIT(RCC->APB1RSTR,  RCC_APB1RSTR_TIM2RST);
     CLEAR_BIT(RCC->APB1RSTR, RCC_APB1RSTR_TIM2RST);
 
-    //Uncomment if 24MHz clock is used
-    //Set prescaler to 2400 => 24MHz/2400 = 10000 ticks per second
-    //TIM2->PSC   = 2399; //+1 (look datasheet)
-
-    //Uncomment if 2.1MHz (MSI) clock is used
     //Set prescaler to 210 => 2.1MHz/210 = 10000 ticks per second
     WRITE_REG(TIM2->PSC, 209); //+1 (look datasheet)
 

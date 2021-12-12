@@ -1,11 +1,11 @@
 /*
  * ****************************************************
- * File:	  nvic.c
- * Project:   RF communication with stm32 and cc1101
- * MCU: 	  STM32L011K4
- * Others:    CC1101
+ * File:	nvic.c
+ * Project:	RF communication with stm32 and cc1101
+ * MCU:		STM32L011K4
+ * Others:	CC1101
  * Author:	Theocharis Ketoglou
- * Date:	  20/09/2021
+ * Date:	20/09/2021
  * ****************************************************
  */
 
@@ -23,11 +23,11 @@ void init_external_irq(void){
 	//Enable System configuration controller
 	SET_BIT(RCC->APB2ENR, RCC_APB2ENR_SYSCFGEN);
 
-	//Enable external interrupt from line 8 		  (CC1101 GDO0)
+	//Enable external interrupt from line 8			(CC1101 GDO0)
 	SET_BIT(EXTI->IMR, EXTI_IMR_IM8);
-	//Enable interrupt on rising edge from line 8 	(CC1101 GDO0)
+	//Enable interrupt on rising edge from line 8	(CC1101 GDO0)
 	SET_BIT(EXTI->RTSR, EXTI_RTSR_RT8);
-	//Configure PA8 as interrupt source 			  (CC1101 GDO0)
+	//Configure PA8 as interrupt source				(CC1101 GDO0)
 	SYSCFG->EXTICR[2] &= (0xFFF0 | SYSCFG_EXTICR3_EXTI8_PA);
 
 	//Enable EXTI4_15 Interrupt

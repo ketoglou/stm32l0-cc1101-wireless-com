@@ -1,11 +1,11 @@
 /*
  * ****************************************************
- * File:	  spi.c
- * Project:   RF communication with stm32 and cc1101
- * MCU: 	  STM32L011K4
- * Others:    CC1101
+ * File:	spi.c
+ * Project:	RF communication with stm32 and cc1101
+ * MCU:		STM32L011K4
+ * Others:	CC1101
  * Author:	Theocharis Ketoglou
- * Date:	  20/09/2021
+ * Date:	20/09/2021
  * ****************************************************
  */
 
@@ -18,9 +18,6 @@ void init_spi(void){
 	//Enable SPI clock
 	SET_BIT(RCC->APB2ENR, RCC_APB2ENR_SPI1EN);
 
-	//Uncomment if 24MHz clock is used
-	//SPI1->CR1 |= SPI_CR1_BR_0; //fPCLK/4 = 24/4 = 6MHz
-	//Uncomment if 2.1MHz (MSI) clock is used
 	CLEAR_BIT(SPI1->CR1, (SPI_CR1_BR_2 | SPI_CR1_BR_1 | SPI_CR1_BR_0));		//fPCLK/8 = 2.1/2 = 1.05 MHz
 
 	SET_BIT(SPI1->CR1, SPI_CR1_MSTR); 										//Master mode

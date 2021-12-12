@@ -1,11 +1,11 @@
 /*
  * ****************************************************
- * File:	  cc1101.c
- * Project:   RF communication with stm32 and cc1101
- * MCU: 	  STM32L011K4
- * Others:    CC1101
- * Author:	Theocharis Ketoglou
- * Date:	  20/09/2021
+ * File:    cc1101.c
+ * Project: RF communication with stm32 and cc1101
+ * MCU:     STM32L011K4
+ * Others:  CC1101
+ * Author:  Theocharis Ketoglou
+ * Date:    20/09/2021
  * ****************************************************
  */
 
