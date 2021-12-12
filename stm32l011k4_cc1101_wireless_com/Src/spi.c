@@ -1,10 +1,12 @@
 /*
- * File		:	spi.c
- * Project	: 	RF communication with stm32 and cc1101
- * MCU		: 	STM32L011K4
- * Others	: 	CC1101
- * Author	: 	Theocharis Ketoglou
- * Date		:	20/09/2021
+ * ****************************************************
+ * File:	  spi.c
+ * Project:   RF communication with stm32 and cc1101
+ * MCU: 	  STM32L011K4
+ * Others:    CC1101
+ * Author:	Theocharis Ketoglou
+ * Date:	  20/09/2021
+ * ****************************************************
  */
 
 #include "spi.h"
@@ -14,16 +16,16 @@
 void init_spi(void){
 
 	//Enable SPI clock
-	RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
+	SET_BIT(RCC->APB2ENR, RCC_APB2ENR_SPI1EN);
 
 	//Uncomment if 24MHz clock is used
 	//SPI1->CR1 |= SPI_CR1_BR_0; //fPCLK/4 = 24/4 = 6MHz
 	//Uncomment if 2.1MHz (MSI) clock is used
-	SPI1->CR1 &= ~(SPI_CR1_BR_2 | SPI_CR1_BR_1 | SPI_CR1_BR_0);		//fPCLK/8 = 2.1/2 = 1.05 MHz
+	CLEAR_BIT(SPI1->CR1, (SPI_CR1_BR_2 | SPI_CR1_BR_1 | SPI_CR1_BR_0));		//fPCLK/8 = 2.1/2 = 1.05 MHz
 
-	SPI1->CR1 |= SPI_CR1_MSTR; 										//Master mode
-	SPI1->CR1 |= (SPI_CR1_SSM | SPI_CR1_SSI); 						//Software NSS
-	SPI1->CR2 |= SPI_CR2_RXNEIE; 									//RX interrupt enable
+	SET_BIT(SPI1->CR1, SPI_CR1_MSTR); 										//Master mode
+	SET_BIT(SPI1->CR1, (SPI_CR1_SSM | SPI_CR1_SSI)); 						//Software NSS
+	SET_BIT(SPI1->CR2, SPI_CR2_RXNEIE); 									//RX interrupt enable
 
 	SPI_RX_COUNTER = 0;
 	SPI_TX_SIZE = 0;
@@ -35,25 +37,13 @@ void init_spi(void){
 	NVIC_EnableIRQ(SPI1_IRQn);
 
 	//Enable SPI module
-	SPI1->CR1 |= SPI_CR1_SPE;
+	SET_BIT(SPI1->CR1, SPI_CR1_SPE);
 
 }
 
 //**************************************************************************************************************************************************************
 
-void nss_pin_handler(nss_pin pin, uint8_t state){
-
-	if(pin == CC1101_NSS){
-		if(state)
-			CC1101_CS_PIN_EN();
-		else
-			CC1101_CS_PIN_DIS();
-	}
-}
-
-//**************************************************************************************************************************************************************
-
-uint8_t spi_transmit(uint8_t *buffer,uint16_t size, nss_pin pin){
+uint8_t spi_transmit(uint8_t *buffer,uint16_t size){
 
 	if(!(SPI1->SR & SPI_SR_BSY) && !SPI_TX_SIZE){
 
@@ -67,14 +57,13 @@ uint8_t spi_transmit(uint8_t *buffer,uint16_t size, nss_pin pin){
 		SPI_TX_COUNTER = 0;
 
 		//Enable NSS pin
-		CURRENT_NSS = pin;
-		nss_pin_handler(pin,1);
+		CC1101_CS_PIN_EN();
 
 		//Load register with the first byte to be transmitted
-		SPI1->DR = buffer[0];
+		WRITE_REG(SPI1->DR, buffer[0]);
 
 		//Enable SPI TX interrupt
-		SPI1->CR2 |= SPI_CR2_TXEIE;
+		SET_BIT(SPI1->CR2, SPI_CR2_TXEIE);
 
 		return 1;
 
@@ -84,19 +73,19 @@ uint8_t spi_transmit(uint8_t *buffer,uint16_t size, nss_pin pin){
 
 //**************************************************************************************************************************************************************
 
-void spi_transmit_wait(uint8_t *buffer,uint16_t size, nss_pin pin){
+void spi_transmit_wait(uint8_t *buffer,uint16_t size){
 	SPI_RX_COUNTER = 0;
-	while(!spi_transmit(buffer,size, pin));
+	while(!spi_transmit(buffer,size));
 	while(SPI_TX_COUNTER < (size - 1));
 }
 
 //**************************************************************************************************************************************************************
 
-void spi_transmit_wait_byte(uint8_t byte, nss_pin pin){
+void spi_transmit_wait_byte(uint8_t byte){
 	SPI_RX_COUNTER = 0;
 	uint8_t buffer[1];
 	buffer[0] = byte;
-	while(!spi_transmit(buffer,1,pin));
+	while(!spi_transmit(buffer,1));
 }
 
 //**************************************************************************************************************************************************************

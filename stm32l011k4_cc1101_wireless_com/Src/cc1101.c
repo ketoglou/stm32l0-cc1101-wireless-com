@@ -1,10 +1,12 @@
 /*
- * File		:	cc1101.c
- * Project	: 	RF communication with stm32 and cc1101
- * MCU		: 	STM32L011K4
- * Others	: 	CC1101
- * Author	: 	Theocharis Ketoglou
- * Date		:	20/09/2021
+ * ****************************************************
+ * File:	  cc1101.c
+ * Project:   RF communication with stm32 and cc1101
+ * MCU: 	  STM32L011K4
+ * Others:    CC1101
+ * Author:	Theocharis Ketoglou
+ * Date:	  20/09/2021
+ * ****************************************************
  */
 
 #include "cc1101.h"
@@ -84,13 +86,13 @@ void init_cc1101(void){
 
 	//Software reset CC1101
 	uint8_t tx_byte[1] = {SRES};
-	spi_transmit_wait(tx_byte,1,CC1101_NSS);
+	spi_transmit_wait(tx_byte,1);
 
 	//Send all registers values
-	spi_transmit_wait(rfSettings,48,CC1101_NSS);
+	spi_transmit_wait(rfSettings,48);
 
 	//Send PA table
-	spi_transmit_wait(PA_TABLE,9,CC1101_NSS);
+	spi_transmit_wait(PA_TABLE,9);
 }
 
 //**************************************************************************************************************************************************************
@@ -104,7 +106,7 @@ void cc1101_transmit(uint8_t *buffer, uint8_t size){
 	USER_BUFFER[0] = SIDLE;
 	USER_BUFFER[1] = SNOP;
 	while((SPI_RX_BUFFER[1] & 0xF0) != 0x00)
-		spi_transmit_wait(USER_BUFFER,2,CC1101_NSS);
+		spi_transmit_wait(USER_BUFFER,2);
 
 	//Initialize USER_BUFFER[0] with a command
 	USER_BUFFER[0] = FIFO_TX_BURST; //Write TX buffer
@@ -115,17 +117,17 @@ void cc1101_transmit(uint8_t *buffer, uint8_t size){
 	}
 
 	//Send the data
-	spi_transmit_wait(USER_BUFFER,size+1,CC1101_NSS);
+	spi_transmit_wait(USER_BUFFER,size+1);
 	//Start transmission
 	USER_BUFFER[0] = STX;
-	spi_transmit_wait(USER_BUFFER,1,CC1101_NSS);
+	spi_transmit_wait(USER_BUFFER,1);
 
 	//Wait for transmission to complete
 	while(!flag0.f1);
 
 	//Flush/Clear TX FIFO
 	USER_BUFFER[0] = SFTX;
-	spi_transmit_wait(USER_BUFFER,1,CC1101_NSS);
+	spi_transmit_wait(USER_BUFFER,1);
 
 	//Clear flag
 	flag0.f1 = 0;

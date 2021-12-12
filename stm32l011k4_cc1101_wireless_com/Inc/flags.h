@@ -1,10 +1,12 @@
 /*
- * File		:	flags.h
- * Project	: 	RF communication with stm32 and cc1101
- * MCU		: 	STM32L011K4
- * Others	: 	CC1101
- * Author	: 	Theocharis Ketoglou
- * Date		:	20/09/2021
+ * ****************************************************
+ * File:	  flags.h
+ * Project:   RF communication with stm32 and cc1101
+ * MCU: 	  STM32L011K4
+ * Others:    CC1101
+ * Author:	Theocharis Ketoglou
+ * Date:	  20/09/2021
+ * ****************************************************
  */
 
 #ifndef FLAGS_H_
@@ -38,7 +40,7 @@ flag flag0;
  * 	f0: Used in CC1101 interrupt (EXTI4_15_IRQHandler)
  * 	f1: Used to notify main that an interrupt from CC1101 pending
  * 	f2: Used in Timer2 to notify when Button 0 change state
- * 	f3:	Used when Button is pressed
+ * 	f3: Used when Button is pressed
  * 	f4:
  * 	f5:
  * 	f6:
