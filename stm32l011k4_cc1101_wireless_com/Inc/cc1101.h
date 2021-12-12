@@ -19,14 +19,14 @@
 //Commands definition for CC1101
 //************************************************************************************************************************************************************************************
 // PA table
-#define PATABLE         0x7E		//PA table Burst access
+#define PATABLE         0x7E        //PA table Burst access
 
 //Burst Bytes for Write/Read register in Burst Mode
-#define BURST_BYTE_WR   0x40 	   //Write,Burst,Start address = 0x00
-#define BURST_BYTE_RD   0xC0 	   //Read,Burst,Start address = 0x00
+#define BURST_BYTE_WR   0x40        //Write,Burst,Start address = 0x00
+#define BURST_BYTE_RD   0xC0        //Read,Burst,Start address = 0x00
 
 //Command Strobes
-#define SRES            0x30 	    //Reset chip
+#define SRES            0x30        //Reset chip
 #define SFSTXON         0x31		//Enable and calibrate frequency synthesizer (if MCSM0.FS_AUTOCAL=1). If in RX (with CCA): Go to a wait state where only the synthesizer is running (for quick RX / TX turnaround).
 #define SXOFF           0x32		//Turn off crystal oscillator
 #define SCAL            0x33		//Calibrate frequency synthesizer and turn it off. SCAL can be strobed from IDLE mode without setting manual calibration mode (MCSM0.FS_AUTOCAL=0)
