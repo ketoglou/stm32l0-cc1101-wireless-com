@@ -57,8 +57,8 @@
 /**
  * 	@function init_cc1101
  *
- *	 @brief Initialize CC1101. Send via SPI the appropriate
- *	 commands to it.
+ *	@brief Initialize CC1101. Send via SPI the appropriate
+ *	commands to it.
  *
  * 	@return void
  */
@@ -67,7 +67,7 @@ void init_cc1101(void);
 /**
  * 	@function cc1101_transmit
  *
- *	 @brief Send data to CC1101 and start the transmission
+ *	@brief Send data to CC1101 and start the transmission
  *
  * 	@return void
  */
@@ -76,8 +76,8 @@ void cc1101_transmit(uint8_t *buffer, uint8_t size);
 /**
  * 	@function cc1101_transmit
  *
- *	 @brief Fill buffer with a number of SNOPs
- *	 so that buffer can be send to CC1101 and receive data.
+ *	@brief Fill buffer with a number of SNOPs
+ *	so that buffer can be send to CC1101 and receive data.
  *
  * 	@return uint16_t
  */
