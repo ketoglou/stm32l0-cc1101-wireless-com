@@ -39,8 +39,7 @@ int main(void){
 	init_iwdg();			//Initialize WatchDog (Comment in DEBUG mode)
 
 	//CC1101 Receive Mode Enable
-	USER_BUFFER[0] = SRX;
-	spi_transmit_wait(USER_BUFFER, 1);
+	cc1101_rx_mode();
 
 	while(1){
 
@@ -56,9 +55,7 @@ int main(void){
 			flag0.f1 = 0;
 
 			//Enable Receive mode again
-			USER_BUFFER[0] = SFRX; //Clear RX buffer
-			USER_BUFFER[1] = SRX;  //Go to Receive Mode
-			spi_transmit_wait(USER_BUFFER, 2);
+			cc1101_rx_mode();
 		}
 
 		//Monitor if the button is pressed
@@ -71,9 +68,7 @@ int main(void){
 			flag0.f3 = 0;
 
 			//Enable Receive mode again
-			USER_BUFFER[0] = SFRX; //Clear RX buffer
-			USER_BUFFER[1] = SRX;  //Go to Receive Mode
-			spi_transmit_wait(USER_BUFFER, 2);
+			cc1101_rx_mode();
 		}
 
 		//Clear WatchDog (Comment in DEBUG mode)

@@ -83,4 +83,13 @@ void cc1101_transmit(uint8_t *buffer, uint8_t size);
  */
 uint16_t init_receive_packet(uint8_t *buffer, uint16_t size);
 
+/**
+ * 	@function cc1101_rx_mode
+ *
+ *	@brief Go to RX mode.
+ *
+ * 	@return void
+ */
+void cc1101_rx_mode(void);
+
 #endif /* CC1101_H_ */

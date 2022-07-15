@@ -37,7 +37,7 @@ typedef struct{
 flag flag0;
 
 /*	--flag0--
- * 	f0: Used in CC1101 interrupt (EXTI4_15_IRQHandler)
+ * 	f0: 
  * 	f1: Used to notify main that an interrupt from CC1101 pending
  * 	f2: Used in Timer2 to notify when Button 0 change state
  * 	f3: Used when Button is pressed

@@ -32,9 +32,9 @@ void init_timer2(void){
     //Enable the hardware interrupt.
     SET_BIT(TIM2->DIER, TIM_DIER_UIE);
 
-    //Enable Timer 2
-    SET_BIT(TIM2->CR1, TIM_CR1_CEN);
-
     //Enable the NVIC interrupt for TIM2
     NVIC_EnableIRQ(TIM2_IRQn);
+
+    //Enable Timer 2
+    SET_BIT(TIM2->CR1, TIM_CR1_CEN);
 }

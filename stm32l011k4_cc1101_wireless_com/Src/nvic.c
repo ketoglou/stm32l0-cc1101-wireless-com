@@ -25,8 +25,8 @@ void init_external_irq(void){
 
 	//Enable external interrupt from line 8			(CC1101 GDO0)
 	SET_BIT(EXTI->IMR, EXTI_IMR_IM8);
-	//Enable interrupt on rising edge from line 8	(CC1101 GDO0)
-	SET_BIT(EXTI->RTSR, EXTI_RTSR_RT8);
+	//Enable interrupt on falling edge from line 8	(CC1101 GDO0)
+	SET_BIT(EXTI->FTSR, EXTI_FTSR_FT8);
 	//Configure PA8 as interrupt source				(CC1101 GDO0)
 	SYSCFG->EXTICR[2] &= (0xFFF0 | SYSCFG_EXTICR3_EXTI8_PA);
 
@@ -75,23 +75,11 @@ void EXTI4_15_IRQHandler(void){
 	//Interrupt on line 8
 	if(READ_BIT(EXTI->PR, EXTI_PR_PIF8)){
 
-		if(!flag0.f0){
-			//Disable interrupt on rising edge from line 8
-			CLEAR_BIT(EXTI->RTSR, EXTI_RTSR_RT8);
-			//Enable interrupt on falling edge from line 8
-			SET_BIT(EXTI->FTSR, EXTI_FTSR_FT8);
-			flag0.f0 = 1;
-		}else{
-			//Enable interrupt on rising edge from line 8
-			SET_BIT(EXTI->RTSR, EXTI_RTSR_RT8);
-			//Disable interrupt on falling edge from line 8
-			CLEAR_BIT(EXTI->FTSR, EXTI_FTSR_FT8);
-			flag0.f0 = 1;
-			flag0.f1 = 1;
-		}
-
 		//Clear flag
 		SET_BIT(EXTI->PR, EXTI_PR_PIF8);
+
+		flag0.f1 = 1;
+		
 	}
 }
 
